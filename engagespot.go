@@ -146,6 +146,10 @@ func NewEngagespotClient(apiKey, apiSecret string) *client {
 
 // NewNotification can be used to create a notification item which can later be sent by using .Send()
 func (c *client) NewNotification(title string) (*notification, error) {
+	if title == "" {
+		return nil, errors.New("empty title string")
+	}
+
 	n := &schema{
 		Title: title,
 	}
